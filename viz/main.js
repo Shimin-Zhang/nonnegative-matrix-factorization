@@ -29,13 +29,20 @@ var patents = {"nodes": [{"group": 1, "id": "root"}, {"group": 2, "id": "electri
 
     function buildNode(tree, nodes, links, is_first, group_level) {
          var group_id = group_level;
-         if (!tree["children"] || tree["children"].length == 0) {
+         var is_leaf = (!tree["children"] || tree["children"].length == 0);
+         var node_val;
+         if (is_leaf)  {
              group_id = 0;
+             node_val = 5;
+         } else {
+             node_val = 20 - group_level;
          }
+
          if (is_first && tree["name"] != "root") {
              nodes.push({"id": tree["parent"], "group": 50, "val": 20 });
          }
-         nodes.push({"id": tree["name"], "group": group_id});
+
+         nodes.push({"id": tree["name"], "group": group_id, "val": node_val });
          if (tree["parent"] && tree["parent"].length > 1) {
              links.push({"source": tree["parent"], "target": tree["name"], "value": 1});
          }
