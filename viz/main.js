@@ -34,6 +34,8 @@ var patents = {"nodes": [{"group": 1, "id": "root"}, {"group": 2, "id": "electri
          if (is_leaf)  {
              group_id = 0;
              node_val = 5;
+         } else if (tree["name"] == "root") {
+             node_val = 100;
          } else {
              node_val = 20 - group_level;
          }
